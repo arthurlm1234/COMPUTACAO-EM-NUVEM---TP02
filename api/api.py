@@ -32,6 +32,8 @@ def recommend(songs):
         index = hash("".join(songs)) % len(rules)
         random_recommendation = rules["consequents"].iloc[index]
         recommendations.extend(random_recommendation)
+    
+    recommendations = [int(item) for item in recommendations]
 
     return recommendations
 
