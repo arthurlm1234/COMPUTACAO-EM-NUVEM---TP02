@@ -1,0 +1,1 @@
+docker run victorhenrique5800/cloud_ml_trainer:latest

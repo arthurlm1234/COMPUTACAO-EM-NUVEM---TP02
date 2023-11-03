@@ -1,0 +1,1 @@
+docker run --publish 32215:32215 victorhenrique5800/cloud_api:latest

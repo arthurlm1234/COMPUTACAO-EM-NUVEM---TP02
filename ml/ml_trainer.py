@@ -1,12 +1,16 @@
 import pickle
 import sys
+import os
 import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori
 from mlxtend.frequent_patterns import association_rules
 
 def preprocess(file_name):
-    data = pd.read_csv(f"datasets/{file_name}")
+    if not os.path.exists("/app/datasets"):
+        os.makedirs("/app/datasets")
+
+    data = pd.read_csv(f"/app/datasets/{file_name}")
     data = data.dropna()
     data = data.drop_duplicates()
     data = data.reset_index(drop=True)
@@ -27,8 +31,8 @@ def train_model(file_name):
             return True
 
     df_onehot = df_onehot.applymap(encode_units)
-    frequent_itemsets = apriori(df_onehot, min_support=0.008, use_colnames=True, verbose=1)
-    rules = association_rules(frequent_itemsets, metric="lift", min_threshold=0.001)
+    frequent_itemsets = apriori(df_onehot, min_support=0.1, use_colnames=True, verbose=1)
+    rules = association_rules(frequent_itemsets, metric="lift", min_threshold=0.1)
 
     # Replace artist names in consequents with most frequent pid
     rules['consequents'] = rules['consequents'].apply(lambda x: set(artist_most_freq_pid[i] for i in x))
@@ -41,8 +45,11 @@ def train_model(file_name):
         print("DEBUG => POSSIBLE RULES:\n\n", rules)
 
     else:
-        rules.to_pickle(f"../models/rules.pkl")
-        with open("../models/songs_artists.pkl", "wb") as f:
+        if not os.path.exists("/app/models"):
+            os.makedirs("/app/models")
+
+        rules.to_pickle(f"/app/models/rules.pkl")
+        with open("/app/models/songs_artists.pkl", "wb") as f:
             pickle.dump(songs_artists, f)
 
 
@@ -52,7 +59,3 @@ if __name__ == "__main__":
         debug_mode = True
 
     train_model("2023_spotify_ds1.csv")
-
-# pid,name,album_name,artist_name,duration_ms,track_name
-# 241,Tegan and Sara,Back In Your Head - The Complete Collection,Tegan and Sara,425306,Back In Your Head - Morgan Page Remix
-# 241,Tegan and Sara,In The Air,Morgan Page,232426,

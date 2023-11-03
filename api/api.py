@@ -5,12 +5,12 @@ import pickle
 import random
 
 app = Flask(__name__)
-rules = pd.read_pickle('./../models/rules.pkl')
+rules = pd.read_pickle('/app/models/rules.pkl')
 
 def recommend(songs):
     # Load song-artist mapping
     song_artist_map = dict()
-    with open("./../models/songs_artists.pkl", "rb") as f:
+    with open("/app/models/songs_artists.pkl", "rb") as f:
         song_artist_map = pickle.load(f)
 
     recommendations = []
@@ -64,11 +64,11 @@ def debugRecommendation():
 
 debug_mode = False
 if __name__ == '__main__':
-    songs_artists = pd.read_pickle('./../models/songs_artists.pkl')
+    songs_artists = pd.read_pickle('/app/models/songs_artists.pkl')
     
     if "--debug" in sys.argv:
         debug_mode = True
         debugRecommendation()
 
     else:
-        app.run(port=30500)
+        app.run(port=32215)
