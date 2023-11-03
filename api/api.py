@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import pandas as pd
 import sys
 import pickle
+import random
 
 app = Flask(__name__)
 rules = pd.read_pickle('./../models/rules.pkl')
@@ -29,7 +30,8 @@ def recommend(songs):
     
     recommendations = list(set(recommendations))
     if len(recommendations) == 0: # The model can not recommend anything, so apply a random recommendation
-        index = hash("".join(songs)) % len(rules)
+        random.seed(len([c for song in songs for c in song]))
+        index = random.randint(0, len(rules) - 1)
         random_recommendation = rules["consequents"].iloc[index]
         recommendations.extend(random_recommendation)
     
