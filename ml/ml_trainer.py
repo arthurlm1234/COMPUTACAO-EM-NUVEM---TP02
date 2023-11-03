@@ -51,4 +51,8 @@ if __name__ == "__main__":
     if "--debug" in sys.argv:
         debug_mode = True
 
-    train_model("playlist-sample-ds1.csv")
+    train_model("2023_spotify_ds1.csv")
+
+# pid,name,album_name,artist_name,duration_ms,track_name
+# 241,Tegan and Sara,Back In Your Head - The Complete Collection,Tegan and Sara,425306,Back In Your Head - Morgan Page Remix
+# 241,Tegan and Sara,In The Air,Morgan Page,232426,
