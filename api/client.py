@@ -5,6 +5,7 @@ import sys
 API_URL = "http://localhost:30500/api/recommend"
 
 def get_recommendations(songs):
+    print(f"Requesting recommendations for {songs}...")
     headers = {
         'Content-Type': 'application/json'
     }
