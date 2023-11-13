@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playlist-recommender-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: user-playlist-recommender
+  template:
+    metadata:
+      labels:
+        app: user-playlist-recommender
+    spec:
+      containers:
+      - name: cloud-api
+        image: victorhenrique5800/cloud_api:latest
+        ports:
+        - containerPort: 80
+      - name: cloud-ml-trainer
+        image: victorhenrique5800/cloud_ml_trainer:latest
+        ports:
+        - containerPort: 80
