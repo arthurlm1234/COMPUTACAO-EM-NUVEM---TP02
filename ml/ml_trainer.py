@@ -6,11 +6,8 @@ from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori
 from mlxtend.frequent_patterns import association_rules
 
-def preprocess(file_name):
-    if not os.path.exists("/app/datasets"):
-        os.makedirs("/app/datasets")
-
-    data = pd.read_csv(f"/app/datasets/{file_name}")
+def preprocess(dataset_path):
+    data = pd.read_csv(dataset_path)
     data = data.dropna()
     data = data.drop_duplicates()
     data = data.reset_index(drop=True)
@@ -18,7 +15,11 @@ def preprocess(file_name):
     return data
 
 def train_model(file_name):
-    data = preprocess(file_name)
+    dataset_path = f"/app/datasets/{file_name}"
+    rules_path = "/app/models/rules.pkl"
+    songs_artists_path = "/app/models/songs_artists.pkl"
+
+    data = preprocess(dataset_path)
     songs_artists = dict(zip(data['track_name'], data['artist_name']))
     
     artist_most_freq_pid = data.groupby('artist_name')['pid'].apply(lambda x: x.value_counts().idxmax())
@@ -37,25 +38,9 @@ def train_model(file_name):
     # Replace artist names in consequents with most frequent pid
     rules['consequents'] = rules['consequents'].apply(lambda x: set(artist_most_freq_pid[i] for i in x))
 
-    if debug_mode:
-        # print("DEBUG => TRANSACTIONS:\n\n", transactions)
-        # print()
-        print("DEBUG => FREQUENT ITEMSETS:\n\n", frequent_itemsets)
-        print()
-        print("DEBUG => POSSIBLE RULES:\n\n", rules)
+    rules.to_pickle(rules_path)
+    with open(songs_artists_path, "wb") as f:
+        pickle.dump(songs_artists, f)
 
-    else:
-        if not os.path.exists("/app/models"):
-            os.makedirs("/app/models")
-
-        rules.to_pickle(f"/app/models/rules.pkl")
-        with open("/app/models/songs_artists.pkl", "wb") as f:
-            pickle.dump(songs_artists, f)
-
-
-debug_mode = False
 if __name__ == "__main__":
-    if "--debug" in sys.argv:
-        debug_mode = True
-
     train_model("2023_spotify_ds1.csv")
