@@ -16,8 +16,18 @@ spec:
       - name: cloud-api
         image: victorhenrique5800/cloud_api:latest
         ports:
-        - containerPort: 80
+        - containerPort: 32215
+        volumeMounts:
+        - name: my-pv-storage
+          mountPath: /app
       - name: cloud-ml-trainer
         image: victorhenrique5800/cloud_ml_trainer:latest
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: my-pv-storage
+          mountPath: /app
+      volumes:
+      - name: my-pv-storage
+        persistentVolumeClaim:
+          claimName: project2-pv-victorribeiro

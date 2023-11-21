@@ -6,7 +6,6 @@ import random
 
 app = Flask(__name__)
 
-
 def recommend(songs):
     rules_path = "/app/models/rules.pkl"
     songs_artists_path = "/app/models/songs_artists.pkl"
