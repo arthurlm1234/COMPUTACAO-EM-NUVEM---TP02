@@ -11,7 +11,7 @@ def preprocess(dataset_path):
     return data
 
 def train_model(file_name):
-    dataset_path = f"/app/datasets/{file_name}"
+    dataset_path = f"/home/datasets/{file_name}"
     rules_path = "/app/models/rules.pkl"
     songs_artists_path = "/app/models/songs_artists.pkl"
 
