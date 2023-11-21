@@ -1,10 +1,6 @@
 import pickle
-import sys
-import os
 import pandas as pd
-from mlxtend.preprocessing import TransactionEncoder
-from mlxtend.frequent_patterns import apriori
-from mlxtend.frequent_patterns import association_rules
+from mlxtend.frequent_patterns import apriori, association_rules
 
 def preprocess(dataset_path):
     data = pd.read_csv(dataset_path)
