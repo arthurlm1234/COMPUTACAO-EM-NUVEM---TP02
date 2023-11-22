@@ -7,6 +7,6 @@ spec:
     app: user-playlist-recommender
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 32171
+      targetPort: 32171
   type: LoadBalancer
