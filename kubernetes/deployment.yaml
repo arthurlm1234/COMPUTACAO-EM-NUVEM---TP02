@@ -30,4 +30,4 @@ spec:
       volumes:
       - name: my-pv-storage
         persistentVolumeClaim:
-          claimName: project2-pv-victorribeiro
+          claimName: project2-pv-arthurmadureira
