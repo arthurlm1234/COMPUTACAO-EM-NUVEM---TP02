@@ -16,7 +16,7 @@ spec:
       - name: cloud-api
         image: victorhenrique5800/cloud_api:latest
         ports:
-        - containerPort: 32215
+        - containerPort: 32171
         volumeMounts:
         - name: my-pv-storage
           mountPath: /app
