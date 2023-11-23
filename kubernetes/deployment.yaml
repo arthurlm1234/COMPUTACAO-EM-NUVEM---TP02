@@ -31,3 +31,6 @@ spec:
       - name: pvc-volume
         persistentVolumeClaim:
           claimName: project2-pv-arthurmadureira
+      env:
+        - name: DATASET_URL
+          value: "https://homepages.dcc.ufmg.br/~cunha/hosted/cloudcomp-2023s2-datasets/2023_spotify_ds1.csv"
