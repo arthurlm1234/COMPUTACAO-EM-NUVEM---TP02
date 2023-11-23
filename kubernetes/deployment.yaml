@@ -20,13 +20,13 @@ spec:
         - containerPort: 32171
         volumeMounts:
         - name: pvc-volume
-          mountPath: /app
+          mountPath: /app/models
       - name: cloud-ml-trainer
         image: victorhenrique5800/cloud_ml_trainer:latest
         imagePullPolicy: Always
         volumeMounts:
         - name: pvc-volume
-          mountPath: /app
+          mountPath: /app/models
       volumes:
       - name: pvc-volume
         persistentVolumeClaim:

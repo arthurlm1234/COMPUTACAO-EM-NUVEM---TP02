@@ -7,8 +7,8 @@ import random
 app = Flask(__name__)
 
 def recommend(songs):
-    rules_path = "/app/models/rules.pkl"
-    songs_artists_path = "/app/models/songs_artists.pkl"
+    rules_path = "models/rules.pkl"
+    songs_artists_path = "models/songs_artists.pkl"
 
     song_artist_map = dict()
     with open(songs_artists_path, "rb") as f:

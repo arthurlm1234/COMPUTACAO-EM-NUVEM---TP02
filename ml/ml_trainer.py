@@ -12,8 +12,8 @@ def preprocess(dataset_path):
 
 def train_model(file_name):
     dataset_path = f"/home/datasets/{file_name}"
-    rules_path = "/app/models/rules.pkl"
-    songs_artists_path = "/app/models/songs_artists.pkl"
+    rules_path = "models/rules.pkl"
+    songs_artists_path = "models/songs_artists.pkl"
 
     data = preprocess(dataset_path)
     songs_artists = dict(zip(data['track_name'], data['artist_name']))
