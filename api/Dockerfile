@@ -7,4 +7,5 @@ WORKDIR /app
 
 EXPOSE 32171
 
-CMD ["python", "api.py", "--host=0.0.0.0"]
+# CMD ["python", "api.py", "--host=0.0.0.0"]
+CMD ["ls"]
