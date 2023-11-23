@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: playlist-recommender-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: user-playlist-recommender
@@ -18,16 +18,14 @@ spec:
         ports:
         - containerPort: 32171
         volumeMounts:
-        - name: my-pv-storage
+        - name: pvc-volume
           mountPath: /app
       - name: cloud-ml-trainer
         image: victorhenrique5800/cloud_ml_trainer:latest
-        ports:
-        - containerPort: 80
         volumeMounts:
-        - name: my-pv-storage
+        - name: pvc-volume
           mountPath: /app
       volumes:
-      - name: my-pv-storage
+      - name: pvc-volume
         persistentVolumeClaim:
           claimName: project2-pv-arthurmadureira

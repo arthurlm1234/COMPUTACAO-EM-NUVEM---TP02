@@ -48,4 +48,4 @@ def recommendApi():
     })
 
 if __name__ == '__main__':
-    app.run(port=32215)
+    app.run(port=32171)
