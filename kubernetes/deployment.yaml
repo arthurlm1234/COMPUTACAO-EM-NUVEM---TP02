@@ -15,6 +15,7 @@ spec:
       containers:
       - name: cloud-api
         image: victorhenrique5800/cloud_api:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 32171
         volumeMounts:
@@ -22,6 +23,7 @@ spec:
           mountPath: /app
       - name: cloud-ml-trainer
         image: victorhenrique5800/cloud_ml_trainer:latest
+        imagePullPolicy: Always
         volumeMounts:
         - name: pvc-volume
           mountPath: /app
