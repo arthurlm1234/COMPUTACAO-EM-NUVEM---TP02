@@ -9,4 +9,3 @@ spec:
     - protocol: TCP
       port: 32171
       targetPort: 32171
-  type: LoadBalancer
