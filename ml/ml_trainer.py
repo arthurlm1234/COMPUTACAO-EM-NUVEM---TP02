@@ -2,6 +2,7 @@ import pickle
 import pandas as pd
 import os
 import ssl
+import time
 from mlxtend.frequent_patterns import apriori, association_rules
 
 def preprocess():
@@ -31,7 +32,7 @@ def train_model():
         if x >= 1:
             return True
 
-    df_onehot = df_onehot.applymap(encode_units)
+    df_onehot = df_onehot.apply(lambda x: x.map(encode_units))
     frequent_itemsets = apriori(df_onehot, min_support=0.1, use_colnames=True, verbose=1)
     rules = association_rules(frequent_itemsets, metric="lift", min_threshold=0.1)
 
@@ -41,6 +42,10 @@ def train_model():
     rules.to_pickle(rules_path)
     with open(songs_artists_path, "wb") as f:
         pickle.dump(songs_artists, f)
+    
+    while True:
+        time.sleep(3)
+        print('Hello')
 
 if __name__ == "__main__":
     train_model()

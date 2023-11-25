@@ -48,4 +48,5 @@ def recommendApi():
     })
 
 if __name__ == '__main__':
-    app.run(port=32171)
+    app.run(debug=True, port=32171, host="0.0.0.0")
+
