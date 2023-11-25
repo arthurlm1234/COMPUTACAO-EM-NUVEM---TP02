@@ -25,11 +25,11 @@ jobs:
         with:
           context: ml/
           push: true
-          tags: victorhenrique5800/cloud_ml_trainer:latest
+          tags: arthurlm1234/api
           
       - name: Build and push Docker image for API
         uses: docker/build-push-action@v4
         with:
           context: api/
           push: true
-          tags: victorhenrique5800/cloud_api:latest
+          tags: arthurlm1234/api2
