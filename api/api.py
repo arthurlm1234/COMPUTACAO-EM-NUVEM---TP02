@@ -3,6 +3,7 @@ import pandas as pd
 import sys
 import pickle
 import random
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -41,10 +42,15 @@ def recommendApi():
     songs = request.json['songs']
     
     recommendations = recommend(songs)
+
+    current_datetime = datetime.now()
+    model_date = current_datetime.strftime("%Y-%m-%d")
+    version = current_datetime.strftime("%Y.%m.%d.%H.%M.%S")
+
     return jsonify({
         "playlist_ids": recommendations,
-        "version": "1.0", 
-        "model_date": "2023-10-25"
+        "version": version,
+        "model_date": model_date
     })
 
 if __name__ == '__main__':
