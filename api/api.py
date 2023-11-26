@@ -43,7 +43,7 @@ def recommendApi():
     recommendations = recommend(songs)
     return jsonify({
         "playlist_ids": recommendations,
-        "version": "1.0",
+        "version": "1.0", 
         "model_date": "2023-10-25"
     })
 
