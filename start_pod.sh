@@ -1,5 +1,4 @@
 kubectl delete deploy playlist-recommender-deployment
-kubectl delete service playlist-recommender-service
 
 cd kubernetes
 kubectl -n arthurmadureira apply -f pvc.yaml
