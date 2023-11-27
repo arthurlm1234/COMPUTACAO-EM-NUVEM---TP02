@@ -1,6 +1,6 @@
 import requests
 import json
-import sys
+import sys 
 
 API_URL = "http://10.103.232.60:32171/api/recommend"
 
